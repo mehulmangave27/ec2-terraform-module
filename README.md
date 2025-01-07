@@ -29,7 +29,6 @@ Below are the mandatory tags:
 
 
 
-Please refer this link for further understanding on EC2 terraform module : [https://github.com/terraform-aws-modules/terraform-aws-ec2-instance/](https://github.com/terraform-aws-modules/terraform-aws-ec2-instance/)
 
 
 ##### **main.tf**:
@@ -134,7 +133,6 @@ variable "server_os" {
 }
 variable "application_code" {
   type = string
-  description = "Application code should be 3 letter code which is registered in CloudFactory"
   default="<application_code>"
 }
 variable "server_count" {
