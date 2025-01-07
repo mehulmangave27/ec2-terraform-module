@@ -1,4 +1,3 @@
-#EC2 module is Developed by Cloud Engineering Team, please reach out in case of any questions or concerns. DLGlobalCloudEngineering@syngenta.com
 
 #Block for Provisioning EC2 Instance, Provide NC AMIs ONLY, Use customer-mc-ec2-instance-profile for post provisioning activities
 locals {
@@ -6,10 +5,6 @@ locals {
   server_type      = lower(var.server_type) == "infrastructure" ? "i" : "d"
   server_os        = lower(var.server_os) == "windows" ? "w" : "l"
   environment      = lower(var.tags["Environment"]) == "production" ? "p" : (lower(var.tags["Environment"]) == "development" ? "d" : (lower(var.tags["Environment"]) == "stage" ? "s" : "t"))
-  backup_setup     = lower(var.tags["Environment"]) == "production" ? (lower(var.region) == "us-east-1" ? "syngenta_aws_ec2_malz_pr_2f7bd8fb-3822-4253-b1d4-515cccc23830" : "syngenta_aws_ec2_malz_pr_950b07e9-6647-456e-bd0c-39410766aa2f") : "syngenta_aws_ec2_malz_no_91fc308e-2c22-4dcf-bdea-f36530a92ac9"
-  backup_policy    = lower(var.tags["Environment"]) == "production" ? "syngenta_rpo24_ret14d_re_5ac63037-6f0e-404b-96f9-6a1e311499a8" : "syngenta_rpo24_ret5d_1fcc3b7c-5d25-419e-8a1c-5effe5f3f936"
-  autopatcher_plan = local.region == "usae" ? (local.environment == "p" ? (local.server_os == "w" ? "aws-malz-prod-us-east-1-windows" : "aws-malz-prod-us-east-1-linux") : (local.server_os == "w" ? "aws-malz-nonprod-us-east-1-windows" : "aws-malz-nonprod-us-east-1-linux")) : (local.environment == "p" ? (local.server_os == "w" ? "aws-malz-prod-eu-central-1-windows" : "aws-malz-prod-eu-central-1-linux") : (local.server_os == "w" ? "aws-malz-nonprod-eu-central-1-windows" : "aws-malz-nonprod-eu-central-1-linux"))
-  patch_group      = local.environment == "p" ? (local.server_os == "w" ? "AWS-WIN-PROD" : "AWS-LIN-PROD") : (local.server_os == "w" ? "AWS-WIN-NPROD" : "AWS-LIN-NPROD")
   stack_id         = random_string.stack_id.result
 }
 
